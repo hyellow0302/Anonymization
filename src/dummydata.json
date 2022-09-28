@@ -1,0 +1,37 @@
+[
+    {
+      "fieldName": "ID",
+      "dataType": "INT",
+      "algorithm": ["mapping","masking"]
+    },
+    {
+      "fieldName": "NAME",
+      "dataType": "STRING",
+      "algorithm": ["masking","totalprocessing","AES"]
+    },
+    {
+      "fieldName": "TEL",
+      "dataType": "STRING",
+      "algorithm": ["mapping","hashalgorithm"]
+    },
+    {
+      "fieldName": "SEX",
+      "dataType": "STRING",
+      "algorithm": ["mapping","masking","hashalgorithm"]
+    },
+    {
+      "fieldName": "WEIGHT",
+      "dataType": "INT",
+      "algorithm": ["masking","totalprocessing","hashalgorithm"]
+    },
+    {
+      "fieldName": "HEIGHT",
+      "dataType": "INT",
+      "algorithm": ["masking","hashalgorithm","AES"]
+    },
+    {
+      "fieldName": "ADDRESS",
+      "dataType": "STRING",
+      "algorithm": ["mapping","masking"]
+    }
+  ]

@@ -26,7 +26,7 @@ function Users() {
 
     fetchUsers();
   }, []);
-  
+
   if (loading) return <div>Loading..</div>;
   if (error) return <div>error</div>;
   if (!users) return null;

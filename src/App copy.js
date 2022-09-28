@@ -2,20 +2,38 @@
 //import styles from "./App.module.css";
 
 import {useState, useEffect} from "react";
-
+import axios from 'axios';
 
 function App() {
   const [data, setData] = useState([]);
   const [downtype, setDowntype] = useState([]);
   const onChange = (event) => {setDowntype(event.target.value)};
   console.log(downtype);
-  useEffect(()=>{
+  /*useEffect(()=>{
     fetch("https://api.coinpaprika.com/v1/tickers")
     .then(response => response.json())
     .then((json) => {
       setData(json);
     });
-  }, []);//1번만 시행시키기 위해서 빈 배열 설정
+    axios.get('https://api.coinpaprika.com/v1/tickers');
+  }, []);*/
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+        setError(null);
+        setUsers(null);
+        // loading 상태를 true 로 바꿉니다.
+        setLoading(true);
+        const response = await axios.get(
+          'https://jsonplaceholder.typicode.com/users'
+        );
+        setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
+      } catch (e) {
+        setError(e);
+      }
+      setLoading(false);
+    };
     return(
         <div>
           <header>
