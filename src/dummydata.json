@@ -2,7 +2,7 @@
     {
       "fieldName": "ID",
       "dataType": "INT",
-      "algorithm": ["mapping","masking"]
+      "algorithm": [1,2]
     },
     {
       "fieldName": "NAME",

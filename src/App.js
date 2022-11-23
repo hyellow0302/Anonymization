@@ -3,35 +3,33 @@ import React, { useState, useEffect } from 'react';
 import dummydata from "./dummydata";
 
 export default function App() {
-  const [isCheck,setIsCheck] = useState(false)
-  const onClick = (event) => {
-    if(event.target.checked==true){
-      setIsCheck("True");
-    }
-    else{
-      setIsCheck("False");
-    }
-    console.log({isCheck});
+  const [isCheck,setIsCheck] = useState(new Array(dummydata.length).fill(false))
+  const [Selected, setSelected] = useState("");
+  const handleOnClick = (index) => {
+    const updateCheckedState = isCheck.map((item, idx)=>idx=== index ? !item : item);
+    setIsCheck(updateCheckedState);
   }
-
-  /*const selectData = dummydata.algorithm.map((algorithm)=>{
-
-  })*/
-
-  const newArrayData = dummydata.map((item) =>{
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
+  }
+  useEffect(()=>console.log({isCheck}),[isCheck])
+  const newArrayData = dummydata.map((item, index) =>{
     return(
         <tr>
           <td>{item.fieldName}</td>
           <td>{item.dataType}</td>
           <td>
-            <input type="checkbox" id={item.fieldName} name={item.fieldName} value={isCheck} onClick={onClick} />
-            <label for="NAME_output">사용</label>
+            <div>
+              <input type="checkbox" id={item.fieldName} name={item.fieldName} value={isCheck[index]} onClick={()=>handleOnClick(index)} />
+              <label for={item.fieldName}>사용</label>
+            </div>
           </td>
           <td>
-            <select name="NAME_Category" id="NAME_Category">
-              <option value="2">해시</option>
-              <option value="saab">마스킹</option>
-              <option value="opel">매핑테이블</option>
+            <select onChange={handleSelect} value={Selected}>
+              {dummydata.algorithm.map((item) => (
+                <option value={item} key={item}>{item}
+                </option>
+              ))}
             </select>
           </td>
         </tr>
